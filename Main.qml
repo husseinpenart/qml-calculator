@@ -1,19 +1,47 @@
 import QtQuick
-import QtQuick.Controls 2.15
-import QtQuick.Controls.Material 2.15
+import QtQuick.Controls
+import QtQuick.Layouts
+import "CalculatorLogic.js" as Logic
 
-Window {
-    width: 480
-    height: 480
+ApplicationWindow {
     visible: true
-    title: qsTr("Hello World")
+    width: 300
+    height: 450
+    title: "Calculator"
 
-    Theme {
+    property string expression: ""
+    property string result: "0"
+
+    ColumnLayout {
         anchors.fill: parent
-    }
+        spacing: 10
 
-    ResultArea {
-        anchors.horizontalCenter: parent.horizontalCenter
+        ResultArea {
+            id: resultArea
+            Layout.fillWidth: true
+            resultText: result
+        }
 
+        NumbersLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            onButtonPressed: (button) => {
+                if (button === "=") {
+                    result = Logic.evaluate(expression).toString()
+                    if (result !== "Error") {
+                        expression = result
+                    } else {
+                        expression = ""
+                    }
+                } else if (button === "C") {
+                    expression = ""
+                    result = "0"
+                } else {
+                    expression += button
+                    result = expression
+                }
+            }
+        }
     }
 }

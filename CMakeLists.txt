@@ -19,6 +19,10 @@ qt_add_qml_module(appcalculator
         Main.qml
         QML_FILES layouts/Theme.qml
         QML_FILES components/ResultArea.qml
+        QML_FILES components/NumbersLayout.qml
+        SOURCES
+        SOURCES
+        QML_FILES CalculatorLogic.js
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

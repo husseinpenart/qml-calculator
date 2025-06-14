@@ -1,22 +1,27 @@
 import QtQuick
 
 Rectangle {
-    width: 640
-    height: 300
-    border.color: 'white'
-    border.width: 2
+    id: resultArea
+    width: parent.width
+    height: 100
+    color: "black"
     radius: 5
-    color: 'black'
+    border.color: "white"
+    border.width: 1
+
+    property string resultText: "0"
 
     Text {
-        id: result
-        text: qsTr("0")
-        color: 'white'
-        font.pixelSize: 25
+        id: resultTextDisplay
+        text: resultArea.resultText
+        color: "white"
+        font.pixelSize: 36
         font.bold: true
+        font.family: "monospace"
 
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.rightMargin: 20
         anchors.bottomMargin: 10
     }
 }
