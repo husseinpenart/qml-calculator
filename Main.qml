@@ -10,8 +10,9 @@ ApplicationWindow {
     title: "Calculator"
 
     property string expression: ""
-    property string result: "0"
-
+    Theme {
+           anchors.fill: parent
+       }
     ColumnLayout {
         anchors.fill: parent
         spacing: 10

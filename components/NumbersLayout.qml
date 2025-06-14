@@ -4,7 +4,14 @@ import QtQuick.Layouts
 
 Item {
     signal buttonPressed(string button)
-
+    property var buttons: [
+        "7", "8", "9", "/",
+        "4", "5", "6", "*",
+        "1", "2", "3", "-",
+        "0", ".", "=", "+",
+        "C", "(", ")", "%",
+        "sin(", "cos(", "tan(", "sqrt("
+    ]
     width: 240
     height: 320
 
@@ -18,50 +25,19 @@ Item {
 
         // Digits 1–9
         Repeater {
-            model: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+            model: buttons
             delegate: Button {
                 text: modelData
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                font.pixelSize: 20
+
+                font.pixelSize: 22
+                font.bold: true
                 onClicked: buttonPressed(text)
             }
         }
 
-        // Clear button
-        Button {
-            text: "C"
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            onClicked: buttonPressed(text)
-        }
 
-        // Zero
-        Button {
-            text: "0"
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            onClicked: buttonPressed(text)
-        }
 
-        // Equal
-        Button {
-            text: "="
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            onClicked: buttonPressed(text)
-        }
-
-        // Operators
-        Repeater {
-            model: ["+", "-", "*", "/"]
-            delegate: Button {
-                text: modelData
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                font.pixelSize: 20
-                onClicked: buttonPressed(text)
-            }
-        }
     }
 }
